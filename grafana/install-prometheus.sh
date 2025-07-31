@@ -2,11 +2,17 @@
 set -euo pipefail
 
 ## Prometheus install script. Quick install:
-# curl -LO https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-prometheus.sh | sh
+# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-prometheus.sh | sh
 
 PROMETHEUS_VERSION="3.5.0"
 PROMETHEUS_FILENAME="prometheus-${PROMETHEUS_VERSION}.linux-amd64"
 PROMETHEUS_TAR="${PROMETHEUS_FILENAME}.tar.gz"
+
+# Check if Prometheus is already installed
+if command -v prometheus &>/dev/null; then
+  echo "Prometheus is already installed."
+  exit 0
+fi
 
 # Set up Prereqs
 if ! id "prometheus" &>/dev/null; then

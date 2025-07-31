@@ -2,7 +2,13 @@
 set -euo pipefail
 
 ## Node exporter install script. Quick install:
-# curl - LO https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | sh
+# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | sh
+
+# Check if Node Exporter is already installed
+if command -v node_exporter &>/dev/null; then
+  echo "Node Exporter is already installed."
+  exit 0
+fi
 
 # Prompt for hostname
 read -p "Enter the hostname to set for this machine: " NEW_HOSTNAME
