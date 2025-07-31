@@ -11,6 +11,7 @@ PROMETHEUS_TAR="${PROMETHEUS_FILENAME}.tar.gz"
 # Check if Prometheus is already installed
 if command -v prometheus &>/dev/null; then
   echo "Prometheus is already installed."
+  sudo systemctl status prometheus
   exit 0
 fi
 

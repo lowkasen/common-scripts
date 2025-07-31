@@ -7,6 +7,7 @@ set -euo pipefail
 # Check if Node Exporter is already installed
 if command -v node_exporter &>/dev/null; then
   echo "Node Exporter is already installed."
+  sudo systemctl status node_exporter
   exit 0
 fi
 
