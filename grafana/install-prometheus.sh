@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ## Prometheus install script. Quick install:
-# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-prometheus.sh | sh
+# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-prometheus.sh | bash
 
 PROMETHEUS_VERSION="3.5.0"
 PROMETHEUS_FILENAME="prometheus-${PROMETHEUS_VERSION}.linux-amd64"

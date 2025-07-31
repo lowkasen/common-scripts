@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ## Node exporter install script. Quick install:
-# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | sh
+# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | bash
 
 # Check if Node Exporter is already installed
 if command -v node_exporter &>/dev/null; then
