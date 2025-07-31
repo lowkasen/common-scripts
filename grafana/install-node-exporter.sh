@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ## Node exporter install script. Quick install:
-# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | bash
+# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | bash < /dev/tty
 
 # Check if Node Exporter is already installed
 if command -v node_exporter &>/dev/null; then
@@ -15,6 +15,7 @@ fi
 read -p "Enter the hostname to set for this machine: " NEW_HOSTNAME
 
 # Replace the placeholder in the script
+echo "Current hostname: $(hostname). Setting hostname to $NEW_HOSTNAME."
 sudo hostnamectl set-hostname "$NEW_HOSTNAME"
 
 # System user for node_exporter
@@ -60,5 +61,5 @@ else
 fi
 
 ## Networking security
-# Open up port 9100 to the remote prometheus server. For now its 18.141.250.212/32
+# Open up port 9100 to the remote prometheus server
 # Or leave it for a local prometheus server to scrape localhost:9100

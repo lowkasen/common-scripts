@@ -77,3 +77,6 @@ if systemctl status prometheus | grep -q "active (running)"; then
 else
   echo "Prometheus installation failed."
 fi
+
+## Networking security
+# Open up port 9090 to the remote grafana server. For now its 52.74.126.100/32
