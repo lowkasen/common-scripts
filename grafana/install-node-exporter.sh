@@ -1,7 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-## Node exporter install script
+## Node exporter install script. Quick install:
+# curl - LO https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | sh
+
 # Prompt for hostname
 read -p "Enter the hostname to set for this machine: " NEW_HOSTNAME
 
@@ -50,6 +52,6 @@ else
   echo "Node Exporter installation failed."
 fi
 
-### Networking security
+## Networking security
 # Open up port 9100 to the remote prometheus server. For now its 18.141.250.212/32
 # Or leave it for a local prometheus server to scrape localhost:9100
