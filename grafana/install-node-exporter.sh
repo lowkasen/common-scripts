@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ## Node exporter install script. Quick install:
-# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | bash < /dev/tty
+# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | bash
 
 # Check if Node Exporter is already installed
 if command -v node_exporter &>/dev/null; then
@@ -41,7 +41,7 @@ After=network.target
 [Service]
 User=node_exporter
 Group=node_exporter
-ExecStart=/usr/local/bin/node_exporter --collector.processes
+ExecStart=/usr/local/bin/node_exporter
 
 [Install]
 WantedBy=default.target
