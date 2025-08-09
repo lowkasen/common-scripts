@@ -12,7 +12,8 @@ if command -v node_exporter &>/dev/null; then
 fi
 
 # Prompt for hostname
-read -p "Enter the hostname to set for this machine: " NEW_HOSTNAME
+printf "Enter the hostname to set for this machine: "
+IFS= read -r NEW_HOSTNAME < /dev/tty
 
 # Replace the placeholder in the script
 echo "Current hostname: $(hostname). Setting hostname to $NEW_HOSTNAME."
