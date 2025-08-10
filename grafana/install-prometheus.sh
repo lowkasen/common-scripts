@@ -74,6 +74,7 @@ sudo systemctl enable prometheus
 # Verify installation
 if systemctl status prometheus | grep -q "active (running)"; then
   echo "Prometheus installed and running successfully."
+  sudo systemctl status prometheus --no-pager -l
 else
   echo "Prometheus installation failed."
 fi

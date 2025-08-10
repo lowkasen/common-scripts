@@ -57,6 +57,7 @@ sudo systemctl enable node_exporter
 # Verify installation
 if systemctl status node_exporter | grep -q "active (running)"; then
   echo "Node Exporter installed and running successfully."
+  sudo systemctl status node_exporter --no-pager -l
 else
   echo "Node Exporter installation failed."
 fi
