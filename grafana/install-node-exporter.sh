@@ -3,16 +3,28 @@ set -euo pipefail
 
 ## Node exporter install script. Quick install:
 # curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | bash
-# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | bash -s -- --skip-hostname
+# curl -fsSL https://raw.githubusercontent.com/lowkasen/common-scripts/refs/heads/main/grafana/install-node-exporter.sh | bash -s -- --hostname hello-world
 
-# Option to skip hostname configuration
-SKIP_HOSTNAME=0
+
+# Option to set hostname via argument
+NEW_HOSTNAME=""
 
 # Parse arguments
-for arg in "$@"; do
-  if [[ "$arg" == "--skip-hostname" ]]; then
-    SKIP_HOSTNAME=1
-  fi
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --hostname|-h)
+      if [[ -n "$2" ]]; then
+        NEW_HOSTNAME="$2"
+        shift 2
+      else
+        echo "Error: $1 requires a value." >&2
+        exit 1
+      fi
+      ;;
+    *)
+      shift
+      ;;
+  esac
 done
 
 # Check if Node Exporter is already installed
@@ -23,16 +35,16 @@ if command -v node_exporter &>/dev/null; then
 fi
 
 
-if [[ "$SKIP_HOSTNAME" -eq 0 ]]; then
-  # Prompt for hostname
-  printf "Enter the hostname to set for this machine: "
-  IFS= read -r NEW_HOSTNAME < /dev/tty
 
-  # Replace the placeholder in the script
+# Hostname logic
+if [[ -n "$NEW_HOSTNAME" ]]; then
   echo "Current hostname: $(hostname). Setting hostname to $NEW_HOSTNAME."
   sudo hostnamectl set-hostname "$NEW_HOSTNAME"
 else
-  echo "Skipping hostname configuration."
+  printf "Enter the hostname to set for this machine: "
+  IFS= read -r NEW_HOSTNAME < /dev/tty
+  echo "Current hostname: $(hostname). Setting hostname to $NEW_HOSTNAME."
+  sudo hostnamectl set-hostname "$NEW_HOSTNAME"
 fi
 
 # System user for node_exporter
